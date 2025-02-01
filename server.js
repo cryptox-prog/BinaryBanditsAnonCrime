@@ -1,3 +1,4 @@
+require('dotenv').config(); // Load the .env file
 const express = require('express');
 const path = require('path');
 
