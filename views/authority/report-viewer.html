@@ -61,7 +61,7 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Binary Bandits</a>
+            <a onclick = "location.href='/home'" class="navbar-brand" href="#">Binary Bandits</a>
             <select id="statusDropdown" class="form-select w-auto ms-auto">
                 <option value="Not Seen">Not Seen</option>
                 <option value="Under Consideration">Under Consideration</option>
@@ -69,7 +69,7 @@
                 <option value="Under Investigation">Under Investigation</option>
                 <option value="Case Solved!">Case Solved!</option>
             </select>
-            <button class="btn btn-logout ms-2">LOGOUT</button>
+            <button class="btn btn-logout ms-2" onclick="window.location.href = '/home'">LOGOUT</button>
         </div>
     </nav>
     <div class="container">
