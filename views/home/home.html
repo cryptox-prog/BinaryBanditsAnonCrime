@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home Page with Language Popup</title>
+  <title>Home Page</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome for Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <style>
     body.dark-theme {
       background-color: #121212;
@@ -18,6 +20,7 @@
       border: none;
       border-radius: 10px;
       padding: 20px;
+      margin-bottom: 20px;
     }
 
     .dark-input {
@@ -31,13 +34,104 @@
       color: #ffffff;
       border-color: #555555;
     }
+
+    .btn-custom {
+      padding: 20px;
+      font-size: 1.5rem;
+      margin: 10px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .category-box {
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 10px;
+      text-align: center;
+    }
+
+    .category-box h3 {
+      margin-bottom: 15px;
+    }
+
+    .category-box .btn {
+      width: 100%;
+      margin: 5px 0;
+    }
   </style>
 </head>
 <body class="dark-theme">
   <!-- Home Page Content -->
-  <div class="container">
-    <h1 class="text-center mt-5">Welcome to the Home Page</h1>
-    <p class="text-center">This is the home page content.</p>
+  <div class="container mb-5">
+    <h1 class="text-center mt-5">Welcome to Binary Bandits</h1>
+    <p class="text-center">Your platform for reporting and tracking cyber crimes.</p>
+
+    <!-- About Us Section in a Box -->
+    <div class="dark-card">
+      <h2>About Us</h2>
+      <p>
+        Cybercrime is a growing threat in today's digital world. It includes activities like hacking, identity theft, phishing, and more. 
+        At Binary Bandits, we aim to provide a secure platform for reporting and tracking cyber crimes to help create a safer online environment.
+      </p>
+    </div>
+
+    <!-- Buttons for Report, Track Complaints, and Authority Login -->
+    <div class="row mt-5 text-center">
+      <div class="col-md-4">
+        <div class="category-box">
+          <h3>Report a Crime</h3>
+          <a href="/report" class="btn btn-primary">
+            <i class="fas fa-exclamation-circle"></i> Report
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="category-box">
+          <h3>Track Complaints</h3>
+          <a href="/track" class="btn btn-success">
+            <i class="fas fa-search"></i> Track
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="category-box">
+          <h3>Authority Login</h3>
+          <a href="/authority-login" class="btn btn-warning">
+            <i class="fas fa-user-shield"></i> Login
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <div class="dark-card">
+          <h2>Contact Us</h2>
+          <form action="/contact" method="POST" class="contact-form">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control dark-input" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control dark-input" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control dark-input" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Language Selection Popup (Bootstrap Modal) -->
@@ -77,5 +171,6 @@
       languageModal.show();
     });
   </script>
+  <script src= "scripts/navbar.js"></script>
 </body>
 </html>
