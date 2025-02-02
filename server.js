@@ -36,7 +36,7 @@ app.use('/', require('./routes/root'));
 app.use('/set-language', require('./routes/lang'));
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://pranavmudgil333:i1sdBdPHbzL32cE2@cluster0.saahg.mongodb.net/ComplaintsDB?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
