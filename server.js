@@ -75,6 +75,21 @@ app.post('/report-form', upload.single('evidencePath'), async (req, res) => {
   }
 });
 
+app.get('/fetch-report/:token', async (req, res) => {
+    try {
+      const { token } = req.params;
+      const report = await CrimeReport.findOne({ token });
+  
+      if (!report) {
+        return res.status(404).json({ message: 'Report not found' });
+      }
+  
+      res.json(report);
+    } catch (error) {
+      res.status(500).json({ message: 'Server error', error: error.message });
+    }
+  });
+  
 // Handle 404 errors for any unmatched routes
 app.all('*', (req, res) => {
   res.status(404);
@@ -87,6 +102,7 @@ app.all('*', (req, res) => {
   }
 });
 
+  
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
