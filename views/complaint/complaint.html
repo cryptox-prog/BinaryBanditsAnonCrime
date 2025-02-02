@@ -186,5 +186,42 @@
     window.onload = generateCaptcha;
   </script>
   <script src = "scripts/navbar.js"></script>
+  <script>
+    // Generate UUID (client-side example)
+    function generateToken() {
+      return crypto.randomUUID(); // Requires secure context (HTTPS or localhost)
+    }
+  
+    // Copy token to clipboard
+    function copyToken() {
+      const token = document.getElementById('tokenIdDisplay').textContent;
+      navigator.clipboard.writeText(token).then(() => {
+        alert('Token copied to clipboard!');
+      });
+    }
+  
+    // Redirect to home
+    function redirectToHome() {
+      window.location.href = '/home';
+    }
+  
+    // Handle form submission
+    document.querySelector('form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Generate and display token
+      const token = generateToken();
+      document.getElementById('tokenIdDisplay').textContent = token;
+      
+      // Show modal
+      const tokenModal = new bootstrap.Modal('#tokenModal');
+      tokenModal.show();
+    });
+  
+    // Initialize Bootstrap components
+    document.addEventListener('DOMContentLoaded', () => {
+      // Your existing CAPTCHA code here
+    });
+  </script>
 </body>
 </html>
