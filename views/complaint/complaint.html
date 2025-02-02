@@ -6,42 +6,7 @@
   <title>Crime Report</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body.dark-theme {
-      background-color: #121212;
-      color: #ffffff;
-    }
-
-    .dark-card {
-      background-color: #1e1e1e;
-      color: #ffffff;
-      border: none;
-      border-radius: 10px;
-      padding: 20px;
-    }
-
-    .dark-input {
-      background-color: #333333;
-      color: #ffffff;
-      border: 1px solid #444444;
-    }
-
-    .dark-input:focus {
-      background-color: #444444;
-      color: #ffffff;
-      border-color: #555555;
-    }
-
-    .centered-box {
-      max-width: 600px; /* Slightly wider to accommodate more fields */
-      margin: 0 auto; /* Center the box */
-      margin-top: 50px; /* Add some top margin */
-    }
-
-    .form-label {
-      font-weight: bold;
-    }
-  </style>
+  <link href="styles/complaint.css" rel="stylesheet">
 </head>
 <body class="dark-theme">
   <div class="container mb-5">
@@ -85,10 +50,22 @@
             <textarea class="form-control dark-input" id="suspectInfo" rows="3" placeholder="Enter suspect information"></textarea>
           </div>
 
-          <!-- Evidence Upload -->
+          <!-- Evidence Type Dropdown -->
           <div class="mb-3">
-            <label for="evidenceUpload" class="form-label">Upload Evidence (Documents, Videos, Images)</label>
-            <input type="file" class="form-control dark-input" id="evidenceUpload" multiple accept=".pdf,.jpg,.jpeg,.png,.mp4">
+            <label for="evidenceType" class="form-label">Choose Evidence Type</label>
+            <select class="form-select dark-input" id="evidenceType" required>
+              <option value="" disabled selected>Select evidence type</option>
+              <option value="image">Images (JPEG, PNG, JPG)</option>
+              <option value="audio">Audio (MP3)</option>
+              <option value="document">Documents (PDF)</option>
+              <option value="video">Videos (MP4)</option>
+            </select>
+          </div>
+
+          <!-- File Upload (Hidden Initially) -->
+          <div class="mb-3">
+            <label id="evidenceuploadlabel" for="evidenceUpload" class="form-label">Upload Evidence</label>
+            <input type="file" class="form-control dark-input" id="evidenceUpload" multiple>
           </div>
 
           <!-- Submit Button -->
@@ -105,9 +82,6 @@
   </footer>
   <!-- Bootstrap JS (Optional, for certain features) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script src= "scripts/navbar.js">
-    
-   
-  </script>
+  <script src="scripts/complaint.js"></script>
 </body>
 </html>
