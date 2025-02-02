@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Police Portal - Binary Bandits</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+    }
+    .navbar {
+      background-color: #1f1f1f;
+    }
+    .navbar-brand, .navbar .btn-logout {
+      color: #ffffff !important;
+    }
+    .btn-logout {
+      background-color: #dc3545;
+      border: none;
+    }
+    .btn-logout:hover {
+      background-color: #c82333;
+    }
+    .table-container {
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+    .table th {
+      background-color: #343a40;
+      color: #ffffff;
+    }
+    .table td {
+      vertical-align: middle;
+      color: #dddddd;
+    }
+    .pagination .page-link {
+      background-color: #343a40;
+      color: #ffffff;
+      border: 1px solid #555;
+    }
+    .pagination .page-link:hover {
+      background-color: #495057;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Binary Bandits</a>
+      <button class="btn btn-logout ms-auto">LOGOUT</button>
+    </div>
+  </nav>
+
+  <div class="container-fluid mt-4">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="table-container">
+          <h5>Officer Profile</h5>
+          <p><strong>Username:</strong> JohnDoe</p>
+          <p><strong>Branch:</strong> Central Police Station</p>
+          <p><strong>Crimes Pending:</strong> <span id="crime-count">15</span></p>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="table-container">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id="search-input" placeholder="Search by Token" oninput="searchCrimes()">
+            <button class="btn btn-primary" onclick="searchCrimes()">Search</button>
+          </div>
+          <div class="mb-3">
+            <label for="category-select" class="form-label">Sort by Category</label>
+            <select id="category-select" class="form-select" onchange="filterByCategory()">
+              <option value="">All Categories</option>
+              <option value="Theft">Theft</option>
+              <option value="Fraud">Fraud</option>
+              <option value="Violence">Violence</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="location-select" class="form-label">Sort by Location</label>
+            <select id="location-select" class="form-select" onchange="filterByLocation()">
+              <option value="">All Locations</option>
+              <option value="Downtown">Downtown</option>
+              <option value="Residential Area">Residential Area</option>
+              <option value="Park">Park</option>
+            </select>
+          </div>
+          <table class="table table-dark table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Crime Description</th>
+              </tr>
+            </thead>
+            <tbody id="crime-table">
+            </tbody>
+          </table>
+          <nav>
+            <ul class="pagination justify-content-center" id="pagination">
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const crimes = [
+      { token: 'CRIME001', category: 'Theft', description: "Armed Robbery at Downtown Bank", location: "Downtown" },
+      { token: 'CRIME002', category: 'Fraud', description: "Cyber Fraud - Phishing Attack", location: "Downtown" },
+      { token: 'CRIME003', category: 'Theft', description: "Vehicle Theft in Residential Area", location: "Residential Area" },
+      { token: 'CRIME004', category: 'Violence', description: "Homicide Investigation - Victim Found in Park", location: "Park" },
+      { token: 'CRIME005', category: 'Fraud', description: "Drug Trafficking at Border Checkpoint", location: "Downtown" },
+      { token: 'CRIME006', category: 'Theft', description: "Burglary at High-End Jewelry Store", location: "Downtown" },
+      { token: 'CRIME007', category: 'Violence', description: "Kidnapping Attempt at Shopping Mall", location: "Downtown" },
+      { token: 'CRIME008', category: 'Violence', description: "Assault and Battery at Local Bar", location: "Downtown" },
+      { token: 'CRIME009', category: 'Fraud', description: "Money Laundering Ring Busted", location: "Residential Area" },
+      { token: 'CRIME010', category: 'Violence', description: "Domestic Violence Case Reported", location: "Residential Area" },
+    ];
+
+    let currentCrimes = [...crimes];
+    let currentPage = 1;
+    const itemsPerPage = 5;
+
+    function displayCrimes(page) {
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const displayedCrimes = currentCrimes.slice(startIndex, endIndex);
+      const crimeTable = document.getElementById("crime-table");
+      const pagination = document.getElementById("pagination");
+
+      crimeTable.innerHTML = "";
+      displayedCrimes.forEach((crime, index) => {
+        const row = `<tr onclick="showCrimeDetail('${encodeURIComponent(JSON.stringify(crime))}')">
+                       <td>${startIndex + index + 1}</td>
+                       <td>${crime.description}</td>
+                     </tr>`;
+        crimeTable.innerHTML += row;
+      });
+
+      setupPagination(page);
+    }
+
+    function setupPagination(page) {
+      const totalPages = Math.ceil(currentCrimes.length / itemsPerPage);
+      const pagination = document.getElementById("pagination");
+      pagination.innerHTML = "";
+
+      for (let i = 1; i <= totalPages; i++) {
+        const pageItem = document.createElement("li");
+        pageItem.className = "page-item" + (i === page ? " active" : "");
+        pageItem.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
+        pagination.appendChild(pageItem);
+      }
+    }
+
+    function changePage(page) {
+      currentPage = page;
+      displayCrimes(currentPage);
+    }
+
+    function searchCrimes() {
+      const searchInput = document.getElementById("search-input").value.toLowerCase();
+      currentCrimes = crimes.filter(crime => crime.token.toLowerCase().includes(searchInput));
+      currentPage = 1;
+      displayCrimes(currentPage);
+    }
+
+    function filterByCategory() {
+      const category = document.getElementById("category-select").value;
+      if (category) {
+        currentCrimes = crimes.filter(crime => crime.category === category);
+      } else {
+        currentCrimes = [...crimes]; // Reset to original crimes
+      }
+      currentPage = 1;
+      displayCrimes(currentPage);
+    }
+
+    function filterByLocation() {
+      const location = document.getElementById("location-select").value;
+      if (location) {
+        currentCrimes = crimes.filter(crime => crime.location === location);
+      } else {
+        currentCrimes = [...crimes]; // Reset to original crimes
+      }
+      currentPage = 1;
+      displayCrimes(currentPage);
+    }
+
+    function showCrimeDetail(crimeJson) {
+      localStorage.setItem('crimeDetail', crimeJson);
+      window.location.href = 'routes/authority/report-viewer';
+    }
+
+    // Initial display
+    displayCrimes(currentPage);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

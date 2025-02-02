@@ -32,6 +32,11 @@ router.get('/home(.html)?', (req, res) => {
 router.get('/authority/login(.html)?', (req, res) => { 
     res.sendFile(path.join(__dirname, '..', 'views', "authority", "login.html")); // Send the languageSelectorPage.html file to the client
 });
-
+router.get('/authority(.html)?', (req, res) => { 
+    res.sendFile(path.join(__dirname, '..', 'views', "authority", "authority.html")); // Send the languageSelectorPage.html file to the client
+});
+router.get('/authority/report-viewer(.html)?', (req, res) => { 
+    res.sendFile(path.join(__dirname, '..', 'views', "authority", "report-viewer.html")); // Send the languageSelectorPage.html file to the client
+});
 
 module.exports = router;

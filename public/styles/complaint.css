@@ -1,39 +1,107 @@
-body.dark-theme {
-background-color: #121212;
-color: #ffffff;
+
+  body.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+  }
+
+  .dark-card {
+    background-color: #1e1e1e;
+    color: #ffffff; /* Text color inside the card */
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .dark-input {
+    background-color: #333333;
+    color: #ffffff; /* Text color inside input fields */
+    border: 1px solid #444444;
+  }
+
+  .dark-input:focus {
+    background-color: #444444;
+    color: #ffffff; /* Text color when input is focused */
+    border-color: #555555;
+  }
+
+  .centered-box {
+    max-width: 600px; /* Slightly wider to accommodate more fields */
+    margin: 0 auto; /* Center the box */
+    margin-top: 50px; /* Add some top margin */
+  }
+
+  .form-label {
+    font-weight: bold;
+    color: #ffffff; /* Label text color */
+  }
+
+  /* Hide the file input initially */
+  #evidenceUpload {
+    display: none;
+  }
+
+  /* CAPTCHA Section Styling */
+  .captcha-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .captcha-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 5px;
+    background-color: #333333;
+    padding: 10px;
+    border-radius: 5px;
+    user-select: none; /* Prevent text selection */
+    color: #ffffff; /* CAPTCHA text color */
+  }
+
+  .captcha-refresh-btn {
+    background-color: #444444;
+    border: none;
+    color: #ffffff; /* Refresh button text color */
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .captcha-refresh-btn:hover {
+    background-color: #555555;
+  }
+
+  /* Button Styling */
+  .btn-primary {
+    background-color: #007bff; /* Primary button background */
+    border-color: #007bff;
+    color: #ffffff; /* Button text color */
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3; /* Hover state */
+    border-color: #0056b3;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d; /* Secondary button background */
+    border-color: #6c757d;
+    color: #ffffff; /* Button text color */
+  }
+
+  .btn-secondary:hover {
+    background-color: #5a6268; /* Hover state */
+    border-color: #545b62;
+  }
+/* Input fields styling */
+input, textarea, select {
+    background-color: #222; /* Dark background */
+    color: #fff; /* Light text */
+    border: 1px solid #444; /* Subtle border */
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
 }
 
-.dark-card {
-background-color: #1e1e1e;
-color: #ffffff;
-border: none;
-border-radius: 10px;
-padding: 20px;
-}
 
-.dark-input {
-background-color: #333333;
-color: #ffffff;
-border: 1px solid #444444;
-}
-
-.dark-input:focus {
-background-color: #444444;
-color: #ffffff;
-border-color: #555555;
-}
-
-.centered-box {
-max-width: 600px; /* Slightly wider to accommodate more fields */
-margin: 0 auto; /* Center the box */
-margin-top: 50px; /* Add some top margin */
-}
-
-.form-label {
-font-weight: bold;
-}
-
-/* Hide the file input initially */
-#evidenceUpload {
-display: none;
-}
