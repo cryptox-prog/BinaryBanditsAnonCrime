@@ -35,73 +35,7 @@
     color: #ffffff; /* Label text color */
   }
 
-  /* Hide the file input initially */
-  #evidenceUpload {
-    display: none;
-  }
-
-  /* CAPTCHA Section Styling */
-  .captcha-box {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-
-  .captcha-text {
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: 5px;
-    background-color: #333333;
-    padding: 10px;
-    border-radius: 5px;
-    user-select: none; /* Prevent text selection */
-    color: #ffffff; /* CAPTCHA text color */
-  }
-
-  .captcha-refresh-btn {
-    background-color: #444444;
-    border: none;
-    color: #ffffff; /* Refresh button text color */
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .captcha-refresh-btn:hover {
-    background-color: #555555;
-  }
-
-  /* Button Styling */
-  .btn-primary {
-    background-color: #007bff; /* Primary button background */
-    border-color: #007bff;
-    color: #ffffff; /* Button text color */
-  }
-
-  .btn-primary:hover {
-    background-color: #0056b3; /* Hover state */
-    border-color: #0056b3;
-  }
-
-  .btn-secondary {
-    background-color: #6c757d; /* Secondary button background */
-    border-color: #6c757d;
-    color: #ffffff; /* Button text color */
-  }
-
-  .btn-secondary:hover {
-    background-color: #5a6268; /* Hover state */
-    border-color: #545b62;
-  }
-/* Input fields styling */
-input, textarea, select {
-    background-color: #222; /* Dark background */
-    color: #fff; /* Light text */
-    border: 1px solid #444; /* Subtle border */
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 1rem;
+/* Hide the file input initially */
+#evidenceUpload {
+display: none;
 }
-
-
