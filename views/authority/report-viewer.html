@@ -19,26 +19,82 @@
             padding: 20px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
+        .navbar {
+            background-color: #1f1f1f;
+        }
+        .navbar-brand, .navbar .btn-logout {
+            color: #ffffff !important;
+        }
+        .btn-logout {
+            background-color: #dc3545;
+            border: none;
+        }
+        .btn-logout:hover {
+            background-color: #c82333;
+        }
+        .progress-bar-container {
+            margin-top: 20px;
+        }
+        .progress-bar {
+            background-color: #333333;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .progress-bar .progress {
+            height: 100%;
+            background-color: #0d6efd;
+            transition: width 0.5s ease;
+        }
+        .progress-stages {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .progress-stages span {
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Binary Bandits</a>
+            <select id="statusDropdown" class="form-select w-auto ms-auto">
+                <option value="Not Seen">Not Seen</option>
+                <option value="Under Consideration">Under Consideration</option>
+                <option value="Registered">Registered</option>
+                <option value="Under Investigation">Under Investigation</option>
+                <option value="Case Solved!">Case Solved!</option>
+            </select>
+            <button class="btn btn-logout ms-2">LOGOUT</button>
+        </div>
+    </nav>
     <div class="container">
         <div class="report-card">
             <h2>Crime Report Details</h2>
             <div id="crime-details"></div>
+            <div class="progress-bar-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <div class="progress-stages">
+                    <span>Not Seen</span>
+                    <span>Under Consideration</span>
+                    <span>Registered</span>
+                    <span>Under Investigation</span>
+                    <span>Case Solved!</span>
+                </div>
+            </div>
         </div>
     </div>
-    
     <script>
-        //wgwegew
-        // Function to display crime details
         function displayCrimeDetails() {
             const crimeDetailJson = localStorage.getItem('crimeDetail');
             if (crimeDetailJson) {
                 const crimeDetail = JSON.parse(decodeURIComponent(crimeDetailJson));
-                const crimeDetailsDiv = document.getElementById('crime-details');
-
-                crimeDetailsDiv.innerHTML = `
+                document.getElementById('crime-details').innerHTML = `
                     <p><strong>Token:</strong> ${crimeDetail.token}</p>
                     <p><strong>Category:</strong> ${crimeDetail.category}</p>
                     <p><strong>Description:</strong> ${crimeDetail.description}</p>
@@ -48,9 +104,30 @@
                 document.getElementById('crime-details').innerHTML = '<p>No details available.</p>';
             }
         }
-
-        // Call the function to display the details
-        displayCrimeDetails();
+        
+        function updateProgressBar(stage) {
+            const progress = document.getElementById('progress');
+            const progressWidths = {
+                'Not Seen': 0,
+                'Under Consideration': 25,
+                'Registered': 50,
+                'Under Investigation': 75,
+                'Case Solved!': 100
+            };
+            progress.style.width = `${progressWidths[stage] || 0}%`;
+            localStorage.setItem('crimeStatus', stage);
+        }
+        
+        document.getElementById('statusDropdown').addEventListener('change', function() {
+            updateProgressBar(this.value);
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            displayCrimeDetails();
+            const savedStatus = localStorage.getItem('crimeStatus') || 'Not Seen';
+            document.getElementById('statusDropdown').value = savedStatus;
+            updateProgressBar(savedStatus);
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
