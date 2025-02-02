@@ -14,5 +14,6 @@
     "name-label": "Name",
     "email-label": "Email",
     "message-label": "Message",
-    "submit-button": "Submit"
+    "submit-button": "Submit",
+    "home": "Home"
   }
