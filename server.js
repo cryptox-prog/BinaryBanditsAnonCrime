@@ -5,6 +5,7 @@ const path = require('path');
 // Get CORS options
 const cors = require('cors');
 const corsOptions = require('./config/corsOptions');
+const cookieParser = require('cookie-parser');
 
 // Initialize Express an set the port
 const app = express();
@@ -17,15 +18,20 @@ app.use(cors(corsOptions));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
+//Use cookie-parser middleware
+app.use(cookieParser());
+
 // Serve the static files from the public directory
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 app.use('/', require('./routes/root'));
 
+app.use('/set-language', require('./routes/lang'));
 // Handle 404 error
 app.all('*', (req, res) => {
     res.status(404)
     if (req.accepts('html')) {
+        console.log("Problem is here");
         res.sendFile(path.join(__dirname, 'views', "404.html")); // Send the 404.html file to the client
     } else if (req.accepts('json')) {
         res.sendFile({error: "404 Page Not Found"});
