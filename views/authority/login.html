@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authority Login</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body.dark-theme {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    .dark-card {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .dark-input {
+      background-color: #333333;
+      color: #ffffff;
+      border: 1px solid #444444;
+    }
+
+    .dark-input:focus {
+      background-color: #444444;
+      color: #ffffff;
+      border-color: #555555;
+    }
+
+    .centered-box {
+      max-width: 400px; /* Decreased width */
+      margin: 0 auto; /* Center the box */
+      margin-top: 100px; /* Add some top margin */
+    }
+
+    .captcha {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 5px;
+      background-color: #444444;
+      padding: 10px;
+      text-align: center;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body class="dark-theme">
+  <div class="container">
+    <div class="centered-box">
+      <div class="dark-card">
+        <h2 class="text-center mb-4">Authority Login</h2>
+        <form>
+          <!-- Username Input -->
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control dark-input" id="username" placeholder="Enter username" required>
+          </div>
+
+          <!-- Password Input -->
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control dark-input" id="password" placeholder="Enter password" required>
+          </div>
+
+          <!-- CAPTCHA Section -->
+          <div class="mb-3">
+            <div class="captcha" id="captchaDisplay">ABCD12</div>
+            <input type="text" class="form-control dark-input" id="captchaInput" placeholder="Enter CAPTCHA" required>
+            <small class="text-danger" id="captchaError" style="display: none;">Incorrect CAPTCHA. Please try again.</small>
+          </div>
+
+          <!-- Login Button -->
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary" id="loginButton" disabled>Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (Optional, for certain features) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // CAPTCHA Logic
+    const captchaDisplay = document.getElementById('captchaDisplay');
+    const captchaInput = document.getElementById('captchaInput');
+    const captchaError = document.getElementById('captchaError');
+    const loginButton = document.getElementById('loginButton');
+
+    // Generate a random CAPTCHA
+    function generateCaptcha() {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let captcha = '';
+      for (let i = 0; i < 6; i++) {
+        captcha += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+      captchaDisplay.textContent = captcha;
+    }
+
+    // Validate CAPTCHA
+    captchaInput.addEventListener('input', function () {
+      const enteredCaptcha = captchaInput.value;
+      const actualCaptcha = captchaDisplay.textContent;
+
+      if (enteredCaptcha === actualCaptcha) {
+        captchaError.style.display = 'none';
+        loginButton.disabled = false;
+      } else {
+        captchaError.style.display = 'block';
+        loginButton.disabled = true;
+      }
+    });
+
+    // Generate CAPTCHA on page load
+    generateCaptcha();
+  </script>
+
+  
+  <script src="scripts/navbar.js"></script>
+</body>
+</html>
