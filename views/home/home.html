@@ -1,111 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/x-icon" href="images/favicon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Page</title>
-  
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome for Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <style>
-    body.dark-theme {
-      background-color: #121212;
-      color: #ffffff;
-    }
-
-    .dark-card {
-      background-color: #1e1e1e;
-      color: #ffffff;
-      border: none;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-
-    .dark-input {
-      background-color: #333333;
-      color: #ffffff;
-      border: 1px solid #444444;
-    }
-
-    .dark-input:focus {
-      background-color: #444444;
-      color: #ffffff;
-      border-color: #555555;
-    }
-
-    .btn-custom {
-      padding: 20px;
-      font-size: 1.5rem;
-      margin: 10px;
-      width: 100%;
-      max-width: 300px;
-    }
-
-    .contact-form {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .category-box {
-      background-color: #1e1e1e;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 10px;
-      text-align: center;
-    }
-
-    .category-box h3 {
-      margin-bottom: 15px;
-    }
-
-    .category-box .btn {
-      width: 100%;
-      margin: 5px 0;
-    }
-  </style>
+  <link href="styles/home.css" rel="stylesheet">
+  
+  <!-- Language Popup CSS -->
 </head>
 <body class="dark-theme">
+
   <!-- Home Page Content -->
   <div class="container mb-5">
-    <h1 class="text-center mt-5">Welcome to Binary Bandits</h1>
-    <p class="text-center">Your platform for reporting and tracking cyber crimes.</p>
+    <h1 class="text-center mt-5" data-translate-key="welcome-header">Welcome to Binary Bandits</h1>
+    <p class="text-center" data-translate-key="welcome-subtext">Your platform for reporting and tracking cyber crimes.</p>
 
-    <!-- About Us Section in a Box -->
+    <!-- About Us Section -->
     <div class="dark-card">
-      <h2>About Us</h2>
-      <p>
+      <h2 data-translate-key="about-header">About Us</h2>
+      <p data-translate-key="about-content">
         Cybercrime is a growing threat in today's digital world. It includes activities like hacking, identity theft, phishing, and more. 
         At Binary Bandits, we aim to provide a secure platform for reporting and tracking cyber crimes to help create a safer online environment.
       </p>
     </div>
 
-    <!-- Buttons for Report, Track Complaints, and Authority Login -->
+    <!-- Action Buttons -->
     <div class="row mt-5 text-center">
       <div class="col-md-4">
         <div class="category-box">
-          <h3>Report a Crime</h3>
+          <h3 data-translate-key="report-title">Report a Crime</h3>
           <a href="/report" class="btn btn-primary">
-            <i class="fas fa-exclamation-circle"></i> Report
+            <i class="fas fa-exclamation-circle"></i> 
+            <span data-translate-key="report-button">Report</span>
           </a>
         </div>
       </div>
       <div class="col-md-4">
         <div class="category-box">
-          <h3>Track Complaints</h3>
+          <h3 data-translate-key="track-title">Track Complaints</h3>
           <a href="/track" class="btn btn-success">
-            <i class="fas fa-search"></i> Track
+            <i class="fas fa-search"></i> 
+            <span data-translate-key="track-button">Track</span>
           </a>
         </div>
       </div>
       <div class="col-md-4">
         <div class="category-box">
-          <h3>Authority Login</h3>
+          <h3 data-translate-key="login-title">Authority Login</h3>
           <a href="/authority-login" class="btn btn-warning">
-            <i class="fas fa-user-shield"></i> Login
+            <i class="fas fa-user-shield"></i> 
+            <span data-translate-key="login-button">Login</span>
           </a>
         </div>
       </div>
@@ -115,64 +63,30 @@
     <div class="row mt-5">
       <div class="col-12">
         <div class="dark-card">
-          <h2>Contact Us</h2>
+          <h2 data-translate-key="contact-header">Contact Us</h2>
           <form action="/contact" method="POST" class="contact-form">
             <div class="mb-3">
-              <label for="name" class="form-label">Name</label>
+              <label for="name" class="form-label" data-translate-key="name-label">Name</label>
               <input type="text" class="form-control dark-input" id="name" name="name" required>
             </div>
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
+              <label for="email" class="form-label" data-translate-key="email-label">Email</label>
               <input type="email" class="form-control dark-input" id="email" name="email" required>
             </div>
             <div class="mb-3">
-              <label for="message" class="form-label">Message</label>
+              <label for="message" class="form-label" data-translate-key="message-label">Message</label>
               <textarea class="form-control dark-input" id="message" name="message" rows="5" required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" data-translate-key="submit-button">Submit</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Language Selection Popup (Bootstrap Modal) -->
-  <div class="modal fade" id="languageModal" tabindex="-1" aria-labelledby="languageModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content dark-card">
-        <div class="modal-header">
-          <h5 class="modal-title" id="languageModalLabel">Select Your Language</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="languageSelect" class="form-label">Choose a Language:</label>
-              <select class="form-select dark-input" id="languageSelect">
-                <option value="en">English</option>
-                <option value="es">Spanish</option>
-                <option value="fr">French</option>
-                <option value="de">German</option>
-              </select>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save Changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bootstrap JS (Required for Modal) -->
+  <script src="scripts/languageSwitcher.js"></script>
+  <script src="scripts/navbar.js"></script>
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Show the language modal when the page loads
-    document.addEventListener("DOMContentLoaded", function () {
-      const languageModal = new bootstrap.Modal(document.getElementById('languageModal'));
-      languageModal.show();
-    });
-  </script>
-  <script src= "scripts/navbar.js"></script>
 </body>
 </html>
