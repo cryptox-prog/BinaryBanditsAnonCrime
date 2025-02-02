@@ -136,10 +136,10 @@
 
       crimeTable.innerHTML = "";
       displayedCrimes.forEach((crime, index) => {
-        const row = `<tr onclick="showCrimeDetail('${encodeURIComponent(JSON.stringify(crime))}')">
+        const row = <tr onclick="showCrimeDetail('${encodeURIComponent(JSON.stringify(crime))}')">
                        <td>${startIndex + index + 1}</td>
                        <td>${crime.description}</td>
-                     </tr>`;
+                     </tr>;
         crimeTable.innerHTML += row;
       });
 
@@ -154,7 +154,7 @@
       for (let i = 1; i <= totalPages; i++) {
         const pageItem = document.createElement("li");
         pageItem.className = "page-item" + (i === page ? " active" : "");
-        pageItem.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
+        pageItem.innerHTML = <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>;
         pagination.appendChild(pageItem);
       }
     }
