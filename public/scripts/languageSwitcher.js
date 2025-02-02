@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
   const dropdownMenu = document.querySelector('.dropdown-menu');
   const currentLanguageBtn = document.querySelector('#dropdownMenuButton');
 
@@ -75,6 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
       // Optional: Handle error (show default language, error message, etc.)
     });
 });
+*/
+
 
 function getCookie(name) {
   const value = `; ${document.cookie}`;
