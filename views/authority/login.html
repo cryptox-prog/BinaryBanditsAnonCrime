@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Authority Login</title>
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body.dark-theme {
@@ -22,20 +21,24 @@
 
     .dark-input {
       background-color: #333333;
-      color: #ffffff;
+      color: #d3d3d3; /* Changed to light grey for better visibility */
       border: 1px solid #444444;
+    }
+
+    .dark-input::placeholder {
+      color: #d3d3d3; /* Ensure placeholder text is also visible */
     }
 
     .dark-input:focus {
       background-color: #444444;
-      color: #ffffff;
+      color: #d3d3d3;
       border-color: #555555;
     }
 
     .centered-box {
-      max-width: 400px; /* Decreased width */
-      margin: 0 auto; /* Center the box */
-      margin-top: 100px; /* Add some top margin */
+      max-width: 400px;
+      margin: 0 auto;
+      margin-top: 100px;
     }
 
     .captcha {
@@ -61,26 +64,25 @@
       <div class="dark-card">
         <h2 class="text-center mb-4">Authority Login</h2>
         <form>
-          <!-- Username Input -->
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" class="form-control dark-input" id="username" placeholder="Enter username" required>
           </div>
 
-          <!-- Password Input -->
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control dark-input" id="password" placeholder="Enter password" required>
           </div>
 
-          <!-- CAPTCHA Section -->
           <div class="mb-3">
-            <div class="captcha" id="captchaDisplay">ABCD12</div>
+            <div class="captcha-container d-flex justify-content-between align-items-center">
+              <div class="captcha" id="captchaDisplay"></div>
+              <button type="button" class="btn btn-secondary btn-sm" id="refreshCaptcha">Refresh</button>
+            </div>
             <input type="text" class="form-control dark-input" id="captchaInput" placeholder="Enter CAPTCHA" required>
             <small class="text-danger" id="captchaError" style="display: none;">Incorrect CAPTCHA. Please try again.</small>
           </div>
 
-          <!-- Login Button -->
           <div class="text-center">
             <button type="submit" class="btn btn-primary" id="loginButton" disabled>Login</button>
           </div>
@@ -89,16 +91,13 @@
     </div>
   </div>
 
-  <!-- Bootstrap JS (Optional, for certain features) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // CAPTCHA Logic
     const captchaDisplay = document.getElementById('captchaDisplay');
     const captchaInput = document.getElementById('captchaInput');
     const captchaError = document.getElementById('captchaError');
     const loginButton = document.getElementById('loginButton');
+    const refreshCaptcha = document.getElementById('refreshCaptcha');
 
-    // Generate a random CAPTCHA
     function generateCaptcha() {
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       let captcha = '';
@@ -108,12 +107,8 @@
       captchaDisplay.textContent = captcha;
     }
 
-    // Validate CAPTCHA
     captchaInput.addEventListener('input', function () {
-      const enteredCaptcha = captchaInput.value;
-      const actualCaptcha = captchaDisplay.textContent;
-
-      if (enteredCaptcha === actualCaptcha) {
+      if (captchaInput.value === captchaDisplay.textContent) {
         captchaError.style.display = 'none';
         loginButton.disabled = false;
       } else {
@@ -122,11 +117,8 @@
       }
     });
 
-    // Generate CAPTCHA on page load
+    refreshCaptcha.addEventListener('click', generateCaptcha);
     generateCaptcha();
   </script>
-
-  
-  <script src="scripts/navbar.js"></script>
 </body>
 </html>
