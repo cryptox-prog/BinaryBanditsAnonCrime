@@ -68,21 +68,58 @@
             <input type="file" class="form-control dark-input" id="evidenceUpload" multiple>
           </div>
 
-          <!-- Submit Button -->
+          <!-- CAPTCHA Section -->
+          <!-- CAPTCHA Section -->
+<div class="mb-3">
+  <label for="captchaInput" class="form-label">CAPTCHA</label>
+  <div class="captcha-box d-flex align-items-center justify-content-between p-2 border rounded bg-light text-dark">
+      <span id="captchaText" class="fw-bold fs-5"></span>
+      <button type="button" class="btn btn-outline-dark btn-sm ms-2" onclick="generateCaptcha()">↻</button>
+  </div>
+  <input type="text" class="form-control dark-input mt-2" id="captchaInput" placeholder="Enter CAPTCHA" required>
+  <small id="captchaError" class="text-danger d-none">Incorrect CAPTCHA. Please try again.</small>
+</div>
+
+          <!-- Submit Button (Hidden Initially) -->
           <div class="text-center">
-            <button type="submit" class="btn btn-primary">Submit Report</button>
+            <button type="submit" class="btn btn-primary" id="submitButton" style="display: none;">Submit Report</button>
           </div>
         </form>
       </div>
     </div>
   </div>
-
+  
   <footer>
     <p class="bg-dark text-light text-center m-0 p-1">&copy; Binary Bandits. All rights reserved.</p>
   </footer>
   <!-- Bootstrap JS (Optional, for certain features) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="scripts/complaint.js"></script>
-  <script src="scripts/navbar.js"></script>
+  <script>
+    // Generate CAPTCHA
+    function generateCaptcha() {
+      const captchaText = Math.random().toString(36).substring(2, 8).toUpperCase();
+      document.getElementById('captchaText').textContent = captchaText;
+    }
+
+    // Validate CAPTCHA
+    document.getElementById('captchaInput').addEventListener('input', function () {
+      const captchaText = document.getElementById('captchaText').textContent;
+      const userInput = this.value.toUpperCase();
+      const submitButton = document.getElementById('submitButton');
+      const captchaError = document.getElementById('captchaError');
+
+      if (userInput === captchaText) {
+        submitButton.style.display = 'block';
+        captchaError.style.display = 'none';
+      } else {
+        submitButton.style.display = 'none';
+        captchaError.style.display = 'block';
+      }
+    });
+
+    // Generate CAPTCHA on page load
+    window.onload = generateCaptcha;
+  </script>
+  <script src = "scripts/navbar.js"></script>
 </body>
 </html>
