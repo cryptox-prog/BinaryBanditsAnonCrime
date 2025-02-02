@@ -31,7 +31,6 @@ app.use('/set-language', require('./routes/lang'));
 app.all('*', (req, res) => {
     res.status(404)
     if (req.accepts('html')) {
-        console.log("Problem is here");
         res.sendFile(path.join(__dirname, 'views', "404.html")); // Send the 404.html file to the client
     } else if (req.accepts('json')) {
         res.sendFile({error: "404 Page Not Found"});
