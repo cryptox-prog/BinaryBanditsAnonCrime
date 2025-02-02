@@ -1,52 +1,41 @@
-body.dark-theme {
-background-color: #121212;
-color: #ffffff;
-}
 
-.dark-card {
-background-color: #1e1e1e;
-color: #ffffff;
-border: none;
-border-radius: 10px;
-padding: 20px;
-}
+  body.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+  }
 
-.dark-input {
-background-color: #333333;
-color: #ffffff;
-border: 1px solid #444444;
-}
+  .dark-card {
+    background-color: #1e1e1e;
+    color: #ffffff; /* Text color inside the card */
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+  }
 
-.dark-input:focus {
-background-color: #444444;
-color: #ffffff;
-border-color: #555555;
-}
+  .dark-input {
+    background-color: #333333;
+    color: #ffffff; /* Text color inside input fields */
+    border: 1px solid #444444;
+  }
 
-.centered-box {
-max-width: 600px; /* Slightly wider to accommodate more fields */
-margin: 0 auto; /* Center the box */
-margin-top: 50px; /* Add some top margin */
-}
+  .dark-input:focus {
+    background-color: #444444;
+    color: #ffffff; /* Text color when input is focused */
+    border-color: #555555;
+  }
 
-.form-label {
-font-weight: bold;
-}
+  .centered-box {
+    max-width: 600px; /* Slightly wider to accommodate more fields */
+    margin: 0 auto; /* Center the box */
+    margin-top: 50px; /* Add some top margin */
+  }
+
+  .form-label {
+    font-weight: bold;
+    color: #ffffff; /* Label text color */
+  }
 
 /* Hide the file input initially */
 #evidenceUpload {
 display: none;
 }
-
-.dark-card .modal-content {
-    background-color: #2a2a2a;
-    color: white;
-  }
-  
-  .dark-card .modal-header {
-    border-bottom: 1px solid #444;
-  }
-  
-  .dark-card .modal-footer {
-    border-top: 1px solid #444;
-  }
