@@ -41,4 +41,8 @@ router.get('/report(.html)?', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'views', "complaint", "complaint.html")); // Send the languageSelectorPage.html file to the client
 });
 
+router.get('/authority-login(.html)?', (req, res) => { 
+    res.sendFile(path.join(__dirname, '..', 'views', "authority", "login.html")); // Send the languageSelectorPage.html file to the client
+});
+
 module.exports = router;
