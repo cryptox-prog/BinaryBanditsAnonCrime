@@ -19,11 +19,19 @@ document.addEventListener('DOMContentLoaded', function() {
           .catch(error => console.error('Error loading translations:', error));
       }
 
-      // Initialize language
-      const savedLang = localStorage.getItem('selectedLanguage') || '1';
-      const initialLang = languages[savedLang];
-      currentLanguageBtn.textContent = initialLang.charAt(0).toUpperCase() + initialLang.slice(1);
-      loadLanguage(initialLang);
+      // Fetch selected language from the server
+      fetch('/get-selected-language')
+        .then(response => response.json())
+        .then(data => {
+          const savedLang = data.selectedLanguage || '1';
+          const initialLang = languages[savedLang];
+          currentLanguageBtn.textContent = initialLang.charAt(0).toUpperCase() + initialLang.slice(1);
+          loadLanguage(initialLang);
+        })
+        .catch(error => {
+          console.error('Error fetching selected language:', error);
+          // Optional: Handle error (show default language, error message, etc.)
+        });
 
       // Populate dropdown items
       Object.entries(languages).forEach(([key, value]) => {
@@ -41,6 +49,18 @@ document.addEventListener('DOMContentLoaded', function() {
           currentLanguageBtn.textContent = this.textContent;
           localStorage.setItem('selectedLanguage', langId);
           loadLanguage(langName);
+
+          // Send request to set language cookie
+          fetch('/language/set-language', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ language: langName })
+          })
+          .then(response => response.json())
+          .then(data => console.log(data.message))
+          .catch(error => console.error('Error setting language cookie:', error));
         });
 
         dropdownMenu.appendChild(dropdownItem);
