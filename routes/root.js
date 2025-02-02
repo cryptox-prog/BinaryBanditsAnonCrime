@@ -13,5 +13,8 @@ router.get('/language-selector(.html)?', (req, res) => {
 router.get('/mode-selector(.html)?', (req, res) => { 
     res.sendFile(path.join(__dirname, '..', 'views', "modeSelectorPage.html")); // Send the languageSelectorPage.html file to the client
 });
+router.get('/report-form(.html)?', (req, res) => { 
+    res.sendFile(path.join(__dirname, '..', 'views','complaint', "complaint.html")); // Send the languageSelectorPage.html file to the client
+});
 
 module.exports = router;
