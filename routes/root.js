@@ -5,12 +5,9 @@ const path = require('path');
 
 
 router.get('^/$|/index(.html)?', (req, res) => { 
-    res.redirect(301, '/language-selector.html'); // Redirect the client to the languageSelectorPage.html file, 301 (permanent redirect)
+    res.redirect(301, '/home'); // Redirect the lient to the languageSelectorPage.html file, 301 (permanent redirect)
 });
 
-router.get('/language-selector(.html)?', (req, res) => { 
-    res.sendFile(path.join(__dirname, '..', 'views', "languageSelectorPage.html")); // Send the languageSelectorPage.html file to the client
-});
 
 router.get('/mode-selector(.html)?', (_, res) => { 
     //res.cookie('selectedLanguage', 'en', { maxAge: 900000, httpOnly: true }); // Set the cookie with a default value
@@ -24,6 +21,8 @@ router.get('/case-tracker(.html)?', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'views', "caseTracker", "casetracker.html")); // Send the languageSelectorPage.html file to the client
 });
 
-
+router.get('/home(.html)?', (req, res) => { 
+    res.sendFile(path.join(__dirname, '..', 'views', "home", "home.html")); // Send the languageSelectorPage.html file to the client
+});
 
 module.exports = router;
