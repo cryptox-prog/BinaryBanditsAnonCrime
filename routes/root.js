@@ -17,4 +17,8 @@ router.get('/report-form(.html)?', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'views','complaint', "complaint.html")); // Send the languageSelectorPage.html file to the client
 });
 
+router.get('/case-tracker(.html)?', (req, res) => { 
+    res.sendFile(path.join(__dirname, '..', 'views', "caseTracker", "casetracker.html")); // Send the languageSelectorPage.html file to the client
+});
+
 module.exports = router;

@@ -1,0 +1,38 @@
+body.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-card {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: none;
+}
+
+.dark-input {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #444444;
+}
+
+.dark-input:focus {
+    background-color: #444444;
+    color: #ffffff;
+    border-color: #555555;
+}
+
+.dark-alert {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #444444;
+}
+
+.alert-info.dark-alert {
+    background-color: #004085;
+    border-color: #0056b3;
+}
+
+.alert-danger.dark-alert {
+    background-color: #721c24;
+    border-color: #8b2630;
+}
