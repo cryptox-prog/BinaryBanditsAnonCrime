@@ -100,7 +100,9 @@
     const captchaError = document.getElementById('captchaError');
     const loginButton = document.getElementById('loginButton');
     const refreshCaptcha = document.getElementById('refreshCaptcha');
-
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+  
     function generateCaptcha() {
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       let captcha = '';
@@ -109,7 +111,7 @@
       }
       captchaDisplay.textContent = captcha;
     }
-
+  
     captchaInput.addEventListener('input', function () {
       if (captchaInput.value === captchaDisplay.textContent) {
         captchaError.style.display = 'none';
@@ -119,9 +121,22 @@
         loginButton.disabled = true;
       }
     });
-
+  
     refreshCaptcha.addEventListener('click', generateCaptcha);
     generateCaptcha();
+  
+    document.querySelector("form").addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent form submission
+  
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
+  
+      if (username === "John" && password === "doe") {
+        window.location.href = "http://localhost:3000/authority/";
+      } else {
+        alert("Invalid username or password. Please try again.");
+      }
+    });
   </script>
 </body>
 </html>
