@@ -38,7 +38,7 @@ function createLanguageModal() {
 // Attach the click event listener to the dynamically added submit button
 function attachSubmitHandler() {
   document.getElementById('languageSubmit').addEventListener('click', function() {
-    const lang = document.getElementById('languageSelect').value;
+    const lang = document.getElementById('languageSelect').value.split(' ')[0].toLowerCase();
     setLanguage(lang);
   });
 }
